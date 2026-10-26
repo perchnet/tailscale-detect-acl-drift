@@ -122,7 +122,7 @@ runs:
         run: |
           case "${DRIFT_DETECTED}" in
             false)
-              echo '## ✅ No ACL drift detected.' | tee ${GITHUB_STEP_SUMMARY}
+              echo '## ✅ No ACL drift detected.' | tee -a ${GITHUB_STEP_SUMMARY}
               ;;
             true)
               echo '## ⚠️ ACL drift detected.' | tee -a '${GITHUB_STEP_SUMMARY}'
