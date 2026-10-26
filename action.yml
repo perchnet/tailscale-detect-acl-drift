@@ -122,26 +122,26 @@ runs:
         run: |
           case "${DRIFT_DETECTED}" in
             false)
-              echo '## ✅ No ACL drift detected.' | tee -a ${GITHUB_STEP_SUMMARY}
+              echo '## ✅ No ACL drift detected.' | tee -a "${GITHUB_STEP_SUMMARY}"
               ;;
             true)
-              echo '## ⚠️ ACL drift detected.' | tee -a '${GITHUB_STEP_SUMMARY}'
+              echo '## ⚠️ ACL drift detected.' | tee -a "${GITHUB_STEP_SUMMARY}"
               ;;
             *)
-              echo "## Error: Unexpected value for DRIFT_DETECTED: ${DRIFT_DETECTED}" | tee -a '${GITHUB_STEP_SUMMARY}'
+              echo "## Error: Unexpected value for DRIFT_DETECTED: ${DRIFT_DETECTED}" | tee -a "${GITHUB_STEP_SUMMARY}"
               exit 1
               ;;
           esac
           if [[ "${CREATE_PR}" == "true" ]]; then
             case "${PULL_REQUEST_OPERATION}" in
               created)
-                echo '✨ A pull request has been created to reconcile the ACL drift. Please review and merge it.' | tee -a '${GITHUB_STEP_SUMMARY}'
+                echo '✨ A pull request has been created to reconcile the ACL drift. Please review and merge it.' | tee -a "${GITHUB_STEP_SUMMARY}"
                 ;;
               updated)
-                echo '🔄 An existing drift-reconciliation pull request has been updated.' | tee -a '${GITHUB_STEP_SUMMARY}'
+                echo '🔄 An existing drift-reconciliation pull request has been updated.' | tee -a "${GITHUB_STEP_SUMMARY}"
                 ;;
               closed)
-                echo '❌ The pull request has been closed. If the ACL drift was reconciled, no further action is needed.' | tee -a '${GITHUB_STEP_SUMMARY}'
+                echo '❌ The pull request has been closed. If the ACL drift was reconciled, no further action is needed.' | tee -a "${GITHUB_STEP_SUMMARY}"
                 ;;
               none)
                 :
